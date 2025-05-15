@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guimarães Fretes e Mudanças</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url(./img/fundobase.png) no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 120px;
+      height: auto;
+    }
+
+    .centered-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid #00cfff;
+      box-shadow: 0 0 20px rgba(0, 207, 255, 0.3);
+      text-align: center;
+    }
+
+    .decoracao-imagens {
+      position: relative;
+      width: 100%;
+      height: 0;
+    }
+
+    .img-esquerda {
+      width: 30%;
+      position: absolute;
+      top: 0;
+      left: 40px;
+    }
+
+    .img-direita {
+      position: absolute;
+      width: 40%;
+      top: 240px;
+      right: 200px;
+    }
+
+    .titulo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .subtitulo {
+      font-size: 20px;
+      color: #00cfff;
+      margin-bottom: 20px;
+    }
+
+    .servicos {
+      text-align: left;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .botao {
+      background: #00cfff;
+      color: black;
+      padding: 12px 24px;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .botao:hover {
+      background: #00b3e6;
+    }
+
+    /* Responsivo para telas menores */
+    @media (max-width: 768px) {
+      .img-esquerda {
+        width: 40%;
+        left: 10px;
+        top: 100px;
+      }
+
+      .img-direita {
+        width: 50%;
+       right: 0px;
+        top: 450px ;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .titulo {
+        font-size: 24px;
+      }
+
+      .subtitulo {
+        font-size: 16px;
+      }
+
+      .botao {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .servicos {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="decoracao-imagens">
+    <img src="./img/logofinal.png" alt="decoração esquerda" class="img-esquerda">
+  </div>
+  <img src="./img/rastro.png" alt="decoração direita" class="img-direita">
+
+  <div class="centered-content">
+    <div class="container">
+      <div class="titulo">Guimarães Fretes & Mudanças</div>
+      <div class="subtitulo">Serviços rápidos e confiáveis para sua mudança</div>
+      <div class="servicos">
+        <p>✓ Entregas em geral (grandes e pequenos fretes)</p>
+        <p>✓ Transporte de móveis e eletrodomésticos</p>
+        <p>✓ Montagem e desmontagem</p>
+        <p>✓ Ajudantes disponíveis (opcional)</p>
+      </div>
+      <a href="form.html" class="botao">Calcular minha mudança</a>
+    </div>
+  </div>
+
+</body>
+</html>

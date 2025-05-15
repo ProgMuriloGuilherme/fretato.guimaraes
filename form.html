@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulário de Cálculo de Frete</title>
+  <style>
+    body {
+      background: url(./img/fundobase.png) no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    .logo-container {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 200px;
+  height: auto;
+}
+
+    form {
+      background: rgba(32, 32, 32, 0.85);
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #00cfff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.973);
+      max-width: 500px;
+      margin: auto;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h3 {
+      margin-top: 30px;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="logo-container">
+  <img src="./img/logofinal.png" alt="Logo da Empresa" class="logo">
+
+  <form id="freteForm" onsubmit="enviarParaWhatsApp(); return false;">
+    <h2>Calcular Frete para Mudança</h2>
+
+    <label for="nome_cliente">Nome do Cliente:</label>
+    <input type="text" id="nome_cliente" name="nome_cliente" required />
+
+    <h3>Local de Saída</h3>
+    <label for="cidade_saida">Cidade:</label>
+    <input type="text" id="cidade_saida" name="cidade_saida" required />
+
+    <label for="bairro_saida">Bairro:</label>
+    <input type="text" id="bairro_saida" name="bairro_saida" required />
+
+    <label for="rua_saida">Rua:</label>
+    <input type="text" id="rua_saida" name="rua_saida" required />
+
+    <label for="numero_saida">Número:</label>
+    <input type="text" id="numero_saida" name="numero_saida" required />
+
+    <label for="cep_saida">CEP:</label>
+    <input type="text" id="cep_saida" name="cep_saida" required />
+
+    <label for="apartamento_saida">O local é apartamento?</label>
+    <select id="apartamento_saida" name="apartamento_saida" onchange="mostrarCamposApartamento('saida')" required>
+      <option value="" disabled selected>Selecione uma opção</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <div id="campos_apartamento_saida" style="display: none;">
+      <label for="andar_saida">Qual andar?</label>
+      <input type="text" id="andar_saida" name="andar_saida" />
+
+      <label for="elevador_saida">Possui elevador de carga?</label>
+      <select id="elevador_saida" name="elevador_saida">
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+
+    <h3>Local de Chegada</h3>
+    <label for="cidade_chegada">Cidade:</label>
+    <input type="text" id="cidade_chegada" name="cidade_chegada" required />
+
+    <label for="bairro_chegada">Bairro:</label>
+    <input type="text" id="bairro_chegada" name="bairro_chegada" required />
+
+    <label for="rua_chegada">Rua:</label>
+    <input type="text" id="rua_chegada" name="rua_chegada" required />
+
+    <label for="numero_chegada">Número:</label>
+    <input type="text" id="numero_chegada" name="numero_chegada" required />
+
+    <label for="cep_chegada">CEP:</label>
+    <input type="text" id="cep_chegada" name="cep_chegada" required />
+
+    <label for="apartamento_chegada">O local é apartamento?</label>
+    <select id="apartamento_chegada" name="apartamento_chegada" onchange="mostrarCamposApartamento('chegada')" required>
+      <option value="" disabled selected>Selecione uma opção</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <div id="campos_apartamento_chegada" style="display: none;">
+      <label for="andar_chegada">Qual andar?</label>
+      <input type="text" id="andar_chegada" name="andar_chegada" />
+
+      <label for="elevador_chegada">Possui elevador de carga?</label>
+      <select id="elevador_chegada" name="elevador_chegada">
+        <option value="" disabled selected>Selecione uma opção</option>
+        <option value="Sim">Sim</option>
+        <option value="Não">Não</option>
+      </select>
+    </div>
+
+    <h3>Observações Importantes!</h3>
+    <label for="ajudante">Precisa de ajudante?</label>
+    <select id="ajudante" name="ajudante" required>
+      <option value="" disabled selected>Selecione uma opção</option>
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <label for="data_servico">Data desejada para o serviço:</label>
+    <input type="date" id="data_servico" name="data_servico" required />
+
+    <label for="observacoes">Observações sobre os itens da mudança:</label>
+    <textarea id="observacoes" name="observacoes" rows="4" placeholder="Ex: Geladeira, sofá de 3 lugares, 10 caixas, cama box..."></textarea>
+
+    <label for="desmontagem">Precisa desmontar algum móvel? Qual?</label>
+    <textarea id="desmontagem" name="desmontagem" rows="3" placeholder="Ex: Sim, preciso desmontar um guarda-roupa de casal."></textarea>
+
+    <p>
+      O motorista não se compromete em carregar nem descarregar o caminhão, apenas na organização da carga dentro do caminhão.
+      Portanto se houver essa necessidade, opte por adicionar um ajudante!
+    </p>
+
+    <button type="submit">Calcular Frete</button>
+  </form>
+
+  <script>
+    function mostrarCamposApartamento(tipo) {
+      const select = document.getElementById("apartamento_" + tipo);
+      const campos = document.getElementById("campos_apartamento_" + tipo);
+      campos.style.display = select.value === "Sim" ? "block" : "none";
+    }
+
+    function enviarParaWhatsApp() {
+      const telResponsavel = "5515998541239";
+
+      const nome_cliente = document.getElementById("nome_cliente").value;
+      const data_servico = document.getElementById("data_servico").value;
+
+      const cidade_saida = document.getElementById("cidade_saida").value;
+      const bairro_saida = document.getElementById("bairro_saida").value;
+      const rua_saida = document.getElementById("rua_saida").value;
+      const numero_saida = document.getElementById("numero_saida").value;
+      const cep_saida = document.getElementById("cep_saida").value || "Não informado.";
+      const apartamento_saida = document.getElementById("apartamento_saida").value;
+      const andar_saida = document.getElementById("andar_saida").value || "N/A";
+      const elevador_saida = document.getElementById("elevador_saida").value || "N/A";
+
+      const cidade_chegada = document.getElementById("cidade_chegada").value;
+      const bairro_chegada = document.getElementById("bairro_chegada").value;
+      const rua_chegada = document.getElementById("rua_chegada").value;
+      const numero_chegada = document.getElementById("numero_chegada").value;
+      const cep_chegada = document.getElementById("cep_chegada").value || "Não informado.";
+      const apartamento_chegada = document.getElementById("apartamento_chegada").value;
+      const andar_chegada = document.getElementById("andar_chegada").value || "N/A";
+      const elevador_chegada = document.getElementById("elevador_chegada").value || "N/A";
+
+      const ajudante = document.getElementById("ajudante").value;
+      const observacoes = document.getElementById("observacoes").value || "Nenhuma observação.";
+      const desmontagem = document.getElementById("desmontagem").value || "Não informado.";
+
+      const mensagem = `
+*Solicitação de Frete*
+
+Nome: ${nome_cliente}
+*Data do serviço:* ${data_servico}
+
+*Saída:*
+Cidade: ${cidade_saida}
+Bairro: ${bairro_saida}
+Rua: ${rua_saida}
+Número: ${numero_saida}
+CEP: ${cep_saida}
+Apartamento: ${apartamento_saida}
+Andar: ${andar_saida}
+Elevador de carga: ${elevador_saida}
+
+*Chegada:*
+Cidade: ${cidade_chegada}
+Bairro: ${bairro_chegada}
+Rua: ${rua_chegada}
+Número: ${numero_chegada}
+CEP: ${cep_chegada}
+Apartamento: ${apartamento_chegada}
+Andar: ${andar_chegada}
+Elevador de carga: ${elevador_chegada}
+
+*Observações:*
+Ajudante: ${ajudante}
+Observações: ${observacoes}
+Desmontagem: ${desmontagem}
+      `;
+
+      const url = `https://wa.me/${telResponsavel}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
